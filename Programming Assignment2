@@ -1,3 +1,5 @@
+##Part 1
+
 ## Caching the Inverse of a Matrix for the Assingment
 ## This function creates a special "matrix" for inverse
 makeCacheMatrix <- function(x = matrix()) {
@@ -27,4 +29,39 @@ cacheSolve <- function(x, ...) {
         inv <- solve(mat, ...)
         x$setInverse(inv)
         inv
+}
+
+
+##Part2
+*set the value of the vector
+*get the value of the vector
+*set the value of the mean
+*get the value of the mean
+
+makeVector <- function(x = numeric()) {
+        m <- NULL
+        set <- function(y) {
+                x <<- y
+                m <<- NULL
+        }
+        get <- function() x
+        setmean <- function(mean) m <<- mean
+        getmean <- function() m
+        list(set = set, get = get,
+             setmean = setmean,
+             getmean = getmean)
+}
+
+##Part2 Check the Mean
+
+cachemean <- function(x, ...) {
+        m <- x$getmean()
+        if(!is.null(m)) {
+                message("getting cached data")
+                return(m)
+        }
+        data <- x$get()
+        m <- mean(data, ...)
+        x$setmean(m)
+        m
 }
